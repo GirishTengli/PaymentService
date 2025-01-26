@@ -1,0 +1,26 @@
+server:
+  port: 8081
+    
+spring:
+  application:
+    name: PAYMENT-SERVICE
+
+    
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/productdb
+    username: postgres
+    password: admin
+    driverClassName: org.postgresql.Driver
+    
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    
+    hibernate:
+      ddl-auto: update
+  config:
+     import: configserver:http://localhost:9296
+  
+  management:
+    tracing:
+         sampling:
+           probability: 1.0     
